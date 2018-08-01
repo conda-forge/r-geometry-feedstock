@@ -14,14 +14,16 @@ Summary: Makes the qhull library (www.qhull.org) available in R, in a similar ma
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/r-geometry-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/r-geometry-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/r-geometry-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/r-geometry-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/r-geometry-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/r-geometry-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/r-geometry-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/r-geometry-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/r-geometry-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/r-geometry-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/r-geometry-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/r-geometry-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-geometry/badges/version.svg)](https://anaconda.org/conda-forge/r-geometry)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/r-geometry/badges/downloads.svg)](https://anaconda.org/conda-forge/r-geometry)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-r--geometry-green.svg)](https://anaconda.org/conda-forge/r-geometry) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/r-geometry.svg)](https://anaconda.org/conda-forge/r-geometry) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/r-geometry.svg)](https://anaconda.org/conda-forge/r-geometry) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/r-geometry.svg)](https://anaconda.org/conda-forge/r-geometry) |
 
 Installing r-geometry
 =====================
