@@ -1,5 +1,4 @@
 {% set version = '0.3-6' %}
-
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,40 +9,43 @@ package:
 source:
   fn: geometry_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/geometry_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/geometry_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
   sha256: 2be231ac99171367635cd957f27da77705329df97520ab86f655839c41dc0968
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  script: R CMD INSTALL --build .
-  skip: True  # [win32]
+  number: 2
+  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-magic
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-magic
 
 test:
   commands:
-    - $R -e "library('geometry')"  # [not win]
+    - $R -e "library('geometry')"           # [not win]
     - "\"%R%\" -e \"library('geometry')\""  # [win]
 
 about:
-  home: https://cran.r-project.org/package=geometry
+  home: http://geometry.r-forge.r-project.org/
   license: GPL (>= 3)
-  license_file: LICENSE
   summary: Makes the qhull library (www.qhull.org) available in R, in a similar manner as in
     Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace
     intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations,
@@ -52,7 +54,16 @@ about:
     not support constrained Delaunay triangulations, or mesh generation of non-convex
     objects, but the package does include some R functions that allow for this. Currently
     the package only gives access to Delaunay triangulation and convex hull computation.
+  license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - ocefpaf
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
