@@ -1,4 +1,4 @@
-{% set version = '0.3-6' %}
+{% set version = "0.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,11 +11,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/geometry_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
-  sha256: 2be231ac99171367635cd957f27da77705329df97520ab86f655839c41dc0968
+  sha256: 1ec4c1fe06ca0cfc8a542913de4144af24ec8cfbe8ec966710e0cb915480f152
 
 build:
   merge_build_host: True  # [win]
-  number: 1002
+  number: 0
   skip: true  # [win32]
   rpaths:
     - lib/R/lib/
