@@ -8,6 +8,8 @@ channel_targets:
 - conda-forge main
 cran_mirror:
 - https://cran.r-project.org
+cxx_compiler:
+- clangxx
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
