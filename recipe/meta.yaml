@@ -1,4 +1,4 @@
-{% set version = "0.4.0" %}
+{% set version = '0.4.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -7,7 +7,6 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: geometry_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/geometry_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
@@ -16,7 +15,6 @@ source:
 build:
   merge_build_host: True  # [win]
   number: 0
-  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,6 +22,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
     - {{native}}toolchain        # [win]
     - {{posix}}filesystem        # [win]
     - {{posix}}make
@@ -32,10 +31,16 @@ requirements:
     - {{posix}}zip               # [win]
   host:
     - r-base
+    - r-rcpp
+    - r-rcppprogress
+    - r-lpsolve
     - r-magic
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
+    - r-rcpp
+    - r-rcppprogress
+    - r-lpsolve
     - r-magic
 
 test:
@@ -44,25 +49,42 @@ test:
     - "\"%R%\" -e \"library('geometry')\""  # [win]
 
 about:
-  home: http://geometry.r-forge.r-project.org/
+  home: https://davidcsterratt.github.io/geometry
   license: GPL (>= 3)
-  summary: Makes the qhull library (www.qhull.org) available in R, in a similar manner as in
-    Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace
+  summary: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner
+    as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace
     intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations,
-    and furthest-site Voronoi diagrams. It runs in 2-d, 3-d, 4-d, and higher dimensions.
+    and furthest-site Voronoi diagrams. It runs in 2D, 3D, 4D, and higher dimensions.
     It implements the Quickhull algorithm for computing the convex hull. Qhull does
     not support constrained Delaunay triangulations, or mesh generation of non-convex
-    objects, but the package does include some R functions that allow for this. Currently
-    the package only gives access to Delaunay triangulation and convex hull computation.
+    objects, but the package does include some R functions that allow for this.
   license_family: GPL3
   license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
 
 extra:
   recipe-maintainers:
+    - conda-forge/r
     - ocefpaf
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+
+# Package: geometry
+# License: GPL (>= 3)
+# Title: Mesh Generation and Surface Tessellation
+# Authors@R: c( person("Jean-Romain", "Roussel" , role=c("cph", "ctb"), comment = "wrote tsearch function with QuadTrees"), person("C. B.", "Barber" , role="cph"),  person("Kai", "Habel", role=c("cph","aut")),  person("Raoul", "Grasman", role=c("cph","aut")), person("Robert B.", "Gramacy", role=c("cph","aut")), person("Pavlo", "Mozharovskyi", role=c("cph","aut")), person("David C.", "Sterratt", role=c("cph","aut","cre"), email="david.c.sterratt@ed.ac.uk"))
+# Description: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations, and furthest-site Voronoi diagrams. It runs in 2D, 3D, 4D, and higher dimensions. It implements the Quickhull algorithm for computing the convex hull. Qhull does not support constrained Delaunay triangulations, or mesh generation of non-convex objects, but the package does include some R functions that allow for this.
+# Version: 0.4.0
+# URL: https://davidcsterratt.github.io/geometry
+# Date: 2019-02-18
+# BugReports: https://github.com/davidcsterratt/geometry/issues
+# Depends: R (>= 3.0.0)
+# Imports: magic, Rcpp, lpSolve
+# Suggests: spelling, testthat, rgl, R.matlab, tripack
+# RoxygenNote: 6.1.1
+# LinkingTo: Rcpp, RcppProgress
+# Encoding: UTF-8
+# Language: en-GB
+# NeedsCompilation: yes
+# Packaged: 2019-02-18 12:27:13 UTC; sterratt
+# Author: Jean-Romain Roussel [cph, ctb] (wrote tsearch function with QuadTrees), C. B. Barber [cph], Kai Habel [cph, aut], Raoul Grasman [cph, aut], Robert B. Gramacy [cph, aut], Pavlo Mozharovskyi [cph, aut], David C. Sterratt [cph, aut, cre]
+# Maintainer: David C. Sterratt <david.c.sterratt@ed.ac.uk>
+# Repository: CRAN
+# Date/Publication: 2019-02-18 13:40:03 UTC
