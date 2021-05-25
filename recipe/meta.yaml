@@ -53,7 +53,7 @@ test:
 
 about:
   home: https://davidcsterratt.github.io/geometry
-  license: GPL-3
+  license: GPL-3.0-or-later
   summary: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner
     as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace
     intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations,
