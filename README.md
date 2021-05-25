@@ -3,7 +3,7 @@ About r-geometry
 
 Home: https://davidcsterratt.github.io/geometry
 
-Package license: GPL-3
+Package license: GPL-3.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-geometry-feedstock/blob/master/LICENSE.txt)
 
