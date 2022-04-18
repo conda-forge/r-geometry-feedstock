@@ -1,4 +1,4 @@
-{% set version = "0.4.5" %}
+{% set version = "0.4.6" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/geometry_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
-  sha256: 8fedd17c64468721d398e3c17a39706321ab71098b29f5e8d8039dd115a220d8
+  sha256: 910465a8c8043faca73bcc7c81c9249b9938677ee6649468003b438a6503f5d8
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -54,16 +54,11 @@ test:
 about:
   home: https://davidcsterratt.github.io/geometry
   license: GPL-3.0-or-later
-  summary: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner
-    as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace
-    intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations,
-    and furthest-site Voronoi diagrams. It runs in 2D, 3D, 4D, and higher dimensions.
-    It implements the Quickhull algorithm for computing the convex hull. Qhull does
-    not support constrained Delaunay triangulations, or mesh generation of non-convex
-    objects, but the package does include some R functions that allow for this.
+  summary: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations, and furthest-site Voronoi diagrams. It runs in 2D,
+    3D, 4D, and higher dimensions. It implements the Quickhull algorithm for computing the convex hull. Qhull does not support constrained Delaunay triangulations, or mesh generation of non-convex objects, but the package does include some R functions that allow for this.
   license_family: GPL3
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
