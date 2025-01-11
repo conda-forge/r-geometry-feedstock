@@ -30,6 +30,12 @@ requirements:
     - {{ posix }}sed               # [win]
     - {{ posix }}coreutils         # [win]
     - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-rcpp                       # [build_platform != target_platform]
+    - r-rcppprogress               # [build_platform != target_platform]
+    - r-linprog                    # [build_platform != target_platform]
+    - r-lpsolve                    # [build_platform != target_platform]
+    - r-magic                      # [build_platform != target_platform]
   host:
     - r-base
     - r-rcpp
@@ -55,7 +61,6 @@ about:
   license: GPL-3.0-or-later
   summary: Makes the 'Qhull' library <http://www.qhull.org> available in R, in a similar manner as in Octave and MATLAB. Qhull computes convex hulls, Delaunay triangulations, halfspace intersections about a point, Voronoi diagrams, furthest-site Delaunay triangulations, and furthest-site Voronoi diagrams. It runs in 2D,
     3D, 4D, and higher dimensions. It implements the Quickhull algorithm for computing the convex hull. Qhull does not support constrained Delaunay triangulations, or mesh generation of non-convex objects, but the package does include some R functions that allow for this.
-  license_family: GPL3
   license_file:
     - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
