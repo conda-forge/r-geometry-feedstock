@@ -1,4 +1,4 @@
-{% set version = "0.5.1" %}
+{% set version = "0.5.2" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/geometry_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/geometry/geometry_{{ version }}.tar.gz
-  sha256: 87413027a50229d463eb7c9b95e87e65d32b7d9b64534663c08378cfa52e2115
+  sha256: c83a1e17ada83112a10ed99d4ddb80e0f1fd1aa70989a4d805480780ed9b46a5
 
 build:
   number: 0
